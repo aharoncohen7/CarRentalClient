@@ -1,0 +1,21 @@
+
+.paginationContainer {
+    display: flex; /* flex */
+    justify-content: center; /* justify-center */
+    align-items: center; /* items-center */
+    gap: 1rem; /* gap-4 */
+    margin-top: 1rem; /* mt-4 */
+  }
+  
+  .paginationButton {
+    border: 1px solid #e5e7eb; /* border */
+    padding: 0.5rem; /* p-2 */
+    margin: 0 0.25rem; /* mx-1 */
+    border-radius: 0.25rem; /* rounded */
+  }
+  
+  .paginationButtonActive {
+    background-color: #3b82f6; /* bg-blue-500 */
+    color: white; /* text-white */
+  }
+  
