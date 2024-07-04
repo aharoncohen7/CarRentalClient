@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import styles from './style.module.css';
 import Pagination from '../Pagination';
 import { useParams } from 'react-router-dom';
 import { formatDateTime, getDate } from '../../helpers';
-import OrderList from '../RentalList';
+import axios from 'axios';
 
 
 const DataTable = ({ }) => {
@@ -166,9 +165,7 @@ const DataTable = ({ }) => {
           <h1 className={styles.noDataHeading}>No data found</h1>
           <button className={styles.refreshButton} onClick={() => handleSearchChange('')}>Refresh</button>
         </div>}
-        <Pagination currentPage={currentPage} totalPages={totalPages} totalLength={totalLength} itemsPerPage={data.length} setCurrentPage={setCurrentPage} />
-      <OrderList/>
-      
+        <Pagination currentPage={currentPage} totalPages={totalPages} totalLength={totalLength} itemsPerPage={data.length} setCurrentPage={setCurrentPage} />    
       </div>
 
 

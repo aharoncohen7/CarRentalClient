@@ -15,7 +15,7 @@ export default function Dashboard() {
    const [type, setType] = useState(types[0]);
    return (
       <div className={styles.main2}>
-         <header className="p-4">
+         <header  className="p-4 sticky">
             <div className='flex justify-between mb-4 border cursor-pointer text-xl bg-black text-white font-mono'>
                <div className='flex gap-6'>
                   {types.map((typeObj) => (

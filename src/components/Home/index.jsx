@@ -7,6 +7,7 @@ import axios from 'axios'
 
 const Home = () => {
     const { categoryName } = useParams()
+    const [change, setChange] = useState(false)
     const url = 'http://localhost:3355/api/';
     const [data, setData] = useState([]);
 
@@ -30,14 +31,14 @@ const Home = () => {
         // setTimeout(()=>{
             fetchTableData()
         // },1000)
-    }, [categoryName])
+    }, [categoryName, change])
 
     console.log(categoryName)
     return (
         <div style={{paddingTop: "60px"}}>
-            {categoryName == "rentals" && <OrderList orders={data}/>}
-            {categoryName == "cars" && <CarList cars={data}/>}
-            {categoryName == "customers" && <CustomerList customers={data}/>}
+            {categoryName == "rentals" && <OrderList orders={data} onChange={setChange}/>}
+            {categoryName == "cars" && <CarList cars={data} onChange={setChange} />}
+            {categoryName == "customers" && <CustomerList customers={data} onChange={setChange} />}
         </div>
     )
 }

@@ -1,8 +1,32 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import styles from './style.module.css';
+import { PopupContext } from '../../App';
+import axios from 'axios';
 
-const CustomerList = ({customers}) => {
+const CustomerList = ({ customers, onChange }) => {
   const [expandedCustomer, setExpandedCustomer] = useState(null);
+  const url = 'http://localhost:3355/api/customers/';
+  const { setPopUpContent } = useContext(PopupContext)
+
+  const handleDeleteCustomer = async (customerId) => {
+    try {
+      const response = await axios.delete(url + customerId);
+      if (response.data.deletedCount > 0) {
+        setPopUpContent(<h1>{` לקוח ${customerId} נמחק בהצלחה`}</h1>)
+        onChange(prev => {
+          return !prev
+        })
+      }
+      else {
+        setPopUpContent(<h2 style={{ color: "red" }}> {`${customerId} Not deleted`}</h2>)
+      }
+    } catch (err) {
+      console.log("Error in fetching data");
+      setPopUpContent(<h2 style={{ color: "red" }}>{`${customerId} Not deleted`}</h2>)
+      console.error(err);
+    }
+
+  };
 
   const toggleCustomerDetails = (customerId) => {
     setExpandedCustomer(expandedCustomer === customerId ? null : customerId);
@@ -17,21 +41,22 @@ const CustomerList = ({customers}) => {
       {customers && customers.map((customer) => (
         <div key={customer._id} className={styles.customerCard}>
           <div className={styles.customerInfo}>
-            <h2>{customer.name || null}</h2>
-            <p><strong>אימייל:</strong> {customer.email}</p>
+            <h2>{customer.name}</h2>
+            <p>{customer.email}<strong> :אימייל</strong> </p>
             <p><strong>טלפון:</strong> {customer.phone}</p>
             <p><strong>רישיון נהיגה:</strong> {customer.driverLicense}</p>
             <p><strong>תאריך רישום:</strong> {formatDate(customer.registeredAt)}</p>
-            <p><strong>כתובת:</strong> {customer.address.street || null} {customer.address.houseNumber || null}, {customer.address.city}, {customer.address.state} {customer.address.zipCode}</p>
+            {/* <p><strong>כתובת:</strong> {customer.address?.street && customer.address?.street} {customer.address.houseNumber }, {customer.address.city}, {customer.address.state} {customer.address.zipCode}</p> */}
           </div>
           <div className={styles.customerActions}>
+            <button onClick={() => handleDeleteCustomer(customer._id)}>מחק</button>
             <button onClick={() => toggleCustomerDetails(customer._id)}>
               {expandedCustomer === customer._id ? 'הסתר היסטוריה' : 'הצג היסטוריה'}
             </button>
           </div>
           {expandedCustomer === customer._id && (
             <div className={styles.rentalHistory}>
-              <h3>היסטוריית השכרות</h3>
+              <h3 >היסטוריית השכרות</h3>
               {customer.rentalHistory.length > 0 ? (
                 customer.rentalHistory.map((rental) => (
                   <div key={rental._id} className={styles.rentalItem}>

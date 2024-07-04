@@ -212,7 +212,7 @@ const Register = () => {
             <button type="submit" className={styles.submitButton}>הרשמה</button>
 
             {submitStatus === 'success' && <p className={styles.successMessage}>הרישום בוצע בהצלחה!</p>}
-            {submitStatus === 'error' && <p className={styles.errorMessage}>אירעה שגיאה בעת הרישום. אנא נסה שנית.</p>}
+            {submitStatus === 'error' && <p className={styles.errorMessage}>אירעה שגיאה בעת הרישום. בדוק את מספר הרישיון ונסה שנית.</p>}
         </form>
     );
 };

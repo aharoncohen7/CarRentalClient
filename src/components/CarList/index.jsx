@@ -2,13 +2,37 @@ import React, { useContext } from 'react';
 import styles from './style.module.css';
 import { PopupContext } from '../../App';
 import CarRentalForm from '../CarRentalForm';
+import axios from 'axios';
 
-const CarList = ({ cars }) => {
+const CarList = ({ cars, onChange }) => {
     const { setPopUpContent } = useContext(PopupContext)
+    const url = 'http://localhost:3355/api/cars/';
+
+    const handleUpdateStatusCar = async (car) => {
+        console.log(car.isAvailable);
+        try {
+            const isAvailable = car.isAvailable? false : true;
+            const response = await axios.patch(url + car._id, { isAvailable });
+            if (response && response.data.isAvailable== isAvailable) {
+                // setPopUpContent(<h1>{`סטטוס ${car._id} עודכן`}</h1>)
+                onChange(prev => {
+                    return !prev
+                })
+                return
+            }
+        } catch (err) {
+            console.log("Error in fetching data");
+            setPopUpContent(<h1>{`"Error in  ${car._id} `}</h1>)
+            console.error(err);
+        }
+
+    };
+
+
+
     const handleRentCar = (car) => {
         console.log(`Rent car ${car}`);
-        setPopUpContent(<CarRentalForm car={car}/>)
-
+        setPopUpContent(<CarRentalForm car={car} />)
     };
 
     const handleViewDetails = (car) => {
@@ -20,7 +44,7 @@ const CarList = ({ cars }) => {
             {cars.map((car) => (
                 <div key={car._id} className={styles.carCard}>
                     <div className={styles.carImages}>
-                        {car.images.slice(0, 2).map((image, index) => (
+                        { car.images && car.images.slice(0, 2).map((image, index) => (
                             <img
                                 key={index}
                                 src={image}
@@ -41,6 +65,9 @@ const CarList = ({ cars }) => {
                     <div className={styles.carActions}>
                         <button onClick={() => handleRentCar(car)} disabled={!car.isAvailable}>
                             {car.isAvailable ? 'השכר רכב' : 'לא זמין להשכרה'}
+                        </button>
+                        <button onClick={() => handleUpdateStatusCar(car)} >
+                            עדכן ססטוס
                         </button>
                         <button onClick={() => handleViewDetails(car._id)}>צפה בפרטים נוספים</button>
                     </div>

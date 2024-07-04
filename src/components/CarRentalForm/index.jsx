@@ -3,8 +3,8 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './style.module.css';
 import { PopupContext } from '../../App';
-import axios from 'axios';
 import { compareDatesWithoutTime } from '../../helpers';
+import axios from 'axios';
 
 const CarRentalForm = ({ car }) => {
     const { setPopUpContent } = useContext(PopupContext)
