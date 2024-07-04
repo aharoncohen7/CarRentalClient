@@ -4,7 +4,9 @@ import { Route, Routes } from "react-router-dom";
 import PopUp from "./components/PopUp";
 import Dashboard from "./components/DashBoard";
 import Layout from "./layouts/Layout";
-import DataTable from "./components/DataTable";
+import Home from "./components/Home";
+import Register from "./components/Register";
+import CarRentalForm from "./components/CarRentalForm";
 // import RegisterPage from "./components/loginPage/RegisterPage";
 // import LoginPage from "./components/loginPage/Login";
 // import NewMessage from "./components/NewMessage";
@@ -29,17 +31,17 @@ export default function App() {
     <PopupContext.Provider value={{ popUpContent, setPopUpContent }}>
       <div>
         <Routes>
-          {/* <Route path="register" element={<RegisterPage />} />
-              <Route path="login" element={<LoginPage />} />
+          <Route path="register" element={<Register/>} />
+          {/* <Route path="form" element={<CarRentalForm/>} /> */}
+              {/* <Route path="login" element={<LoginPage />} />
               <Route path="forgot" element={<ForgotPassword />} /> */}
-          <Route path="" element={<Layout/>}>
-            {/* <Route path="" element={<Dashboard />} /> */}
+          <Route path="" element={<Layout />}>
+            <Route path="dashboard/:categoryName" element={<Dashboard />} >
 
-            <Route path=":categoryName" element={<DataTable />} >
-              {/* <Route path="new-message" element={<NewMessage />} /> */}
-              {/* <Route path=":chatType" element={<EmailsListLayout />} > */}
+
               {/* <Route path=":chatId" element={<Chat />} /> */}
-              {/* </Route> */}
+            </Route>
+            <Route path=":categoryName" element={<Home/>} >
             </Route>
           </Route>
         </Routes>

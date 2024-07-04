@@ -4,12 +4,16 @@ import { IoMdContacts } from "react-icons/io";
 import { FaCar } from "react-icons/fa";
 import { MdCarRental } from "react-icons/md";
 import styles from './style.module.css'
+import { IoMdStats } from "react-icons/io";
+import { MdAppRegistration } from "react-icons/md";
 
 
 const mainNavIcons = [
-    { icon: FaCar, name: "Cars" },
-    { icon: IoMdContacts, name: "Customers" },
-    { icon: MdCarRental, name: "Rentals" },
+    { icon: FaCar, name: "Cars",ref: "cars" },
+    { icon: IoMdContacts, name: "Customers",ref: "customers" },
+    { icon: MdCarRental, name: "Rentals", ref: "rentals" },
+    { icon: IoMdStats, name: "Dashboard",ref: "dashboard/rentals" },
+    { icon: MdAppRegistration, name: "Registration",ref: "register" },
 ]
 
 const MainNav = () => {
@@ -20,7 +24,7 @@ const MainNav = () => {
                     {mainNavIcons.map((obj) => (
                         <NavLink
                             key={obj.name}
-                            to={`/${obj.name.toLowerCase()}`}
+                            to={obj.ref}
                             className={({ isActive }) =>
                                 `${isActive ? styles.active : ""} ${styles.box}`
                             }

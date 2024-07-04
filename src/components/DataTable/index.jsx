@@ -3,23 +3,25 @@ import axios from 'axios';
 import styles from './style.module.css';
 import Pagination from '../Pagination';
 import { useParams } from 'react-router-dom';
+import { formatDateTime, getDate } from '../../helpers';
+import OrderList from '../RentalList';
+
 
 const DataTable = ({ }) => {
   const [columns, setColumns] = useState([]);
   const [data, setData] = useState([]);
   const [search, setSearch] = useState('');
-  // const [isActive, setIsActive] = useState('all');
-  const [sortKey, setSortKey] = useState('');
+  const [sortKey, setSortKey] = useState('id');
   const [sortOrder, setSortOrder] = useState('asc');
   const [currentPage, setCurrentPage] = useState(1);
   const [totalLength, setTotalLength] = useState(0);
   const [filters, setFilters] = useState({});
-  const itemsPerPage = 10;
+  const itemsPerPage =8;
   const dir = sortOrder === 'asc' ? "🔽" : "🔼";
   const url = 'http://localhost:3355/api/';
   const totalPages = Math.ceil(totalLength / itemsPerPage);
   const {categoryName} = useParams()
-  console.log("🚀 ~ DataTable ~ categoryName:", categoryName)
+  // console.log("🚀 ~ DataTable ~ categoryName:", categoryName)
 
   // קבלת תבנית טבלה ריקה
   useEffect(() => {
@@ -41,16 +43,17 @@ const DataTable = ({ }) => {
       }
     }
     fetchColumns()
-  }, []);
+  }, [categoryName]);
 
   // קבלת תוכן טבלה
   useEffect(() => {
     const fetchTableData = async () => {
       try {
-        const response = await axios.post(url + categoryName, { search, sortKey, sortOrder, filters, currentPage });
+        const response = await axios.post(url+ "tables/" + categoryName, {search, sortKey, sortOrder, currentPage, filters});
         if (response.status == 200) {
           console.log(response.data.items);
           setData(response.data.items);
+          // setData(response.data);
           setTotalLength(response.data.count)
         }
 
@@ -63,7 +66,7 @@ const DataTable = ({ }) => {
     };
 
     fetchTableData()
-  }, [search, sortKey, sortOrder, currentPage, filters]);
+  }, [categoryName, search, sortKey, sortOrder, currentPage, filters]);
 
 
   const handleFilterChange = (key, value) => {
@@ -112,8 +115,12 @@ const DataTable = ({ }) => {
                   }
                 >
                   <option value="all">All</option>
-                  <option value="true">{col.key.slice(2, col.key.length)}</option>
-                  <option value="false">Not {col.key.slice(2, col.key.length).toLowerCase()}</option>
+                  <option value="true">{col.key
+                  .slice(2, col.key.length)
+                  }</option>
+                  <option value="false">Not {col.key
+                  .slice(2, col.key.length)
+                  .toLowerCase()}</option>
                 </select>
               );
             }
@@ -121,7 +128,7 @@ const DataTable = ({ }) => {
           })}
         </div>
         <table className={styles.table}>
-          <thead>
+          <thead> 
             <tr>
               {columns && columns.map((col) => (
                 <>
@@ -137,15 +144,16 @@ const DataTable = ({ }) => {
             </tr>
           </thead>
           <tbody>
-            {data.length ? data.map((row) => (
+            {data && data.length ? data.map((row) => (
               <tr key={row.id} className={styles.td}>
                 {row && Object.entries(row).map(([key, value]) => (
                   <>
-                    {key !== "__v" && <td
+                    { <td
                       key={key}
                       className={`${styles.td} ${(value === true || value === false) ? (value ? styles.textGreen : styles.textRed) : ""}`}
                     >
-                      {value !== true && value !== false ? value : (value ? 'Yes' : 'No')}
+              
+                      {handleValue(value)}
                     </td>}
                   </>
                 ))}
@@ -154,15 +162,40 @@ const DataTable = ({ }) => {
           </tbody>
         </table>
     
-        {!data.length && <div className={styles.noDataContainer}>
+        {!data && <div className={styles.noDataContainer}>
           <h1 className={styles.noDataHeading}>No data found</h1>
           <button className={styles.refreshButton} onClick={() => handleSearchChange('')}>Refresh</button>
         </div>}
         <Pagination currentPage={currentPage} totalPages={totalPages} totalLength={totalLength} itemsPerPage={data.length} setCurrentPage={setCurrentPage} />
+      <OrderList/>
+      
       </div>
+
+
     </>
     
   );
 };
 
 export default DataTable;
+
+
+function handleValue(value) {
+  switch (true) {
+    case typeof value === 'boolean':
+      return value ? 'Yes' : 'No';
+      
+    case isISO8601TimeString(value):
+      return getDate(value);
+
+    default:
+      return value;
+  }
+}
+
+
+function isISO8601TimeString(str) {
+  // Regular expression for ISO 8601 format
+  const iso8601Regex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/;
+  return iso8601Regex.test(str);
+}

@@ -1,39 +1,54 @@
 
 import { useState } from "react";
-// import DataTable from "./components/DataTable";
+import MainNav from "../MainNav";
+import DataTable from "../DataTable";
+import { NavLink } from "react-router-dom";
+import styles from './style.module.css';
+
 
 export default function Dashboard() {
    const types = [
-      { category: "users", i: 0 },
-      { category: "cars", i: 1 },
-      { category: "Rentals", i: 2 }
+      { name: "Customers", i: 0, ref: "/dashboard/customers" },
+      { name: "cars", i: 1, ref: "/dashboard/cars" },
+      { name: "Rentals", i: 2, ref: "/dashboard/rentals" }
    ];
    const [type, setType] = useState(types[0]);
-
    return (
-      <div>
+      <div className={styles.main2}>
          <header className="p-4">
             <div className='flex justify-between mb-4 border cursor-pointer text-xl bg-black text-white font-mono'>
                <div className='flex gap-6'>
                   {types.map((typeObj) => (
-                     <button
-                        key={typeObj.i}
-                        className="cursor-pointer first-letter:uppercase hover:text-black hover:bg-white p-2"
+
+                     <NavLink
+                        key={typeObj.name}
+                        to={typeObj.ref}
+                        className={({ isActive }) =>
+                           `${isActive ? styles.active : ""} ${styles.box}`
+                        }
                         onClick={() => setType(typeObj)}
-                        type="button"
                      >
-                        {typeObj.category}
-                     </button>
+                        <button
+                           key={typeObj.i}
+                           className="cursor-pointer first-letter:uppercase hover:text-black hover:bg-white p-2"
+                           onClick={() => setType(typeObj)}
+                           type="button"
+                        >
+                           {typeObj.name}
+                        </button>
+                     </NavLink>
                   ))}
                </div>
                <h1 className="text-5xl font-bold font-mono">
-                  {type.category} Management
+                  {type.name}
                </h1>
-               <img src="./icon.png" alt="logo" />
+               <span></span>
+               {/* <img src="./icon.png" alt="logo" /> */}
             </div>
          </header>
          <main className="p-4">
-            {/* <DataTable type={type.category} key={type.i} /> */}
+            {/* <MainNav/> */}
+            <DataTable type={type.name} key={type.i} />
          </main>
       </div>
    );

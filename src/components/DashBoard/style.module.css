@@ -3,21 +3,24 @@
     flex-direction: row;
     justify-content: space-between;
     /* align-items: center; */
-    position: fixed;
-    width: 100%;
+    position: relative;
     background-color: rgb(252, 252, 252);
+
     svg {
         color: var(--gray-bg-color);
         font-size: 24px;
     }
-    
+}
+
+.main2{
+    padding-top: 50px;
 }
 
 .ul {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    /* gap: 10px; */
+    gap: 10px;
 }
 
 .li {
@@ -41,9 +44,11 @@
 
 .box:hover {
     border-bottom-color: var(--primary-color);
+
     svg {
         color: var(--primary-color)
     }
+
     :nth-child(1) {
         background-color: var(--lightGray-bg-color);
     }
@@ -52,17 +57,13 @@
 
 .active {
     border-bottom-color: var(--primary-color);
+
     svg {
         color: var(--primary-color);
 
     }
+
     :nth-child(1) {
         background-color: var(--lightGreen-bg-color);
     }
 }
-
-
-
-
-
-

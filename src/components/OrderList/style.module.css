@@ -1,0 +1,73 @@
+.orderList {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.orderCard {
+  display: flex;
+  flex-direction: column;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.orderInfo {
+  padding: 1rem;
+  text-align: right;
+}
+
+.orderInfo h2 {
+  margin-top: 0;
+  color: #333;
+}
+
+.orderActions {
+  padding: 1rem;
+  border-top: 1px solid #dee2e6;
+}
+
+.orderActions button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.orderActions button:hover {
+  background-color: #0056b3;
+}
+
+.expandedDetails {
+  padding: 1rem;
+  background-color: #ffffff;
+  border-top: 1px solid #dee2e6;
+}
+
+.expandedDetails h3 {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.expandedDetails h3:first-child {
+  margin-top: 0;
+}
+
+@media (max-width: 768px) {
+  .orderCard {
+    font-size: 0.9rem;
+  }
+
+  .orderActions button {
+    width: 100%;
+  }
+}

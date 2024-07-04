@@ -1,0 +1,251 @@
+/* .rentalForm {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.rentalForm h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.formGroup {
+    margin-bottom: 15px;
+}
+
+.formGroup label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+.formGroup input[type="text"],
+.formGroup input[type="date"],
+.formGroup input[type="number"],
+.formGroup textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.formGroup input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+.error {
+    border-color: #ff0000;
+}
+
+.errorMessage {
+    color: #ff0000;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.carDetails {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.carDetails h3 {
+    margin-top: 0;
+    color: #333;
+}
+
+.totalPrice {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+.formActions {
+    text-align: center;
+}
+
+.submitButton,
+.registerButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submitButton:hover,
+.registerButton:hover {
+    background-color: #0056b3;
+}
+
+.registerButton {
+    background-color: #28a745;
+}
+
+.registerButton:hover {
+    background-color: #218838;
+} */
+
+
+.rentalForm {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+   
+
+}
+
+.rentalForm h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.formGroup {
+    margin-bottom: 20px;
+}
+
+.formGroup label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+.formGroup input[type="text"],
+.formGroup input[type="date"],
+.formGroup textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.formGroup input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+.error {
+    border-color: #ff0000;
+}
+
+.errorMessage {
+    color: #ff0000;
+    text-align: center;
+    font-size: 24px;
+    margin-top: 5px;
+}
+
+.successMessage {
+    color: #28a745;
+    text-align: center;
+    font-size: 24px;
+    margin-top: 10px;
+  }
+
+.carDetails {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.carDetails h3 {
+    margin-top: 0;
+    color: #333;
+}
+
+.rentalSummary {
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 20px;
+    
+}
+
+/* .summary {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 6px;
+} */
+
+.rentalSummary h3 {
+    color: #007bff;
+}
+
+.formActions {
+    text-align: center;
+    display: flex;
+    gap: 6px;
+}
+
+.submitButton,
+.registerButton,
+.backButton {
+    padding: 12px 24px;
+    font-size: 18px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submitButton:hover,
+.registerButton:hover,
+.backButton:hover {
+    background-color: #0056b3;
+}
+
+.registerButton {
+    background-color: #28a745;
+}
+
+.registerButton:hover {
+    background-color: #218838;
+}
+
+.backButton {
+    background-color: #6c757d;
+    margin-top: 10px;
+}
+
+.backButton:hover {
+    background-color: #5a6268;
+}
+
+.registerPrompt {
+    text-align: center;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.registerPrompt p {
+    margin-bottom: 20px;
+    font-size: 18px;
+}

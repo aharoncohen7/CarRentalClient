@@ -1,0 +1,80 @@
+.customerList {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+  }
+  
+  .customerCard {
+    display: flex;
+    flex-direction: column;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .customerInfo {
+    padding: 1rem;
+    text-align: right;
+  }
+  
+  .customerInfo h2 {
+    margin-top: 0;
+    color: #333;
+  }
+  
+  .customerActions {
+    padding: 1rem;
+    border-top: 1px solid #dee2e6;
+  }
+  
+  .customerActions button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .customerActions button:hover {
+    background-color: #0056b3;
+  }
+  
+  .rentalHistory {
+    padding: 1rem;
+    background-color: #ffffff;
+    border-top: 1px solid #dee2e6;
+  }
+  
+  .rentalHistory h3 {
+    margin-top: 0;
+    color: #333;
+  }
+  
+  .rentalItem {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #dee2e6;
+  }
+  
+  .rentalItem:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+  
+  @media (max-width: 768px) {
+    .customerCard {
+      font-size: 0.9rem;
+    }
+  
+    .customerActions button {
+      width: 100%;
+    }
+  }
